@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Text views are weighted rather than wrap_content so uniform autosizing has a
+     bounded box to shrink into; this keeps the copy readable if it is replaced
+     with something longer. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:id="@+id/idle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="22"
+            android:autoSizeMaxTextSize="140sp"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:text="@string/idle_title"
+            android:textColor="@color/foreground"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="78"
+            android:contentDescription="@string/grass_description"
+            android:scaleType="centerCrop"
+            android:src="@drawable/grass" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/response"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="22"
+            android:autoSizeMaxTextSize="90sp"
+            android:autoSizeMinTextSize="18sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center|bottom"
+            android:text="@string/response_title"
+            android:textColor="@color/foreground"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="22"
+            android:autoSizeMaxTextSize="90sp"
+            android:autoSizeMinTextSize="18sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center|top"
+            android:text="@string/response_subtitle"
+            android:textColor="@color/foreground"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="16"
+            android:autoSizeMaxTextSize="56sp"
+            android:autoSizeMinTextSize="16sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center|bottom"
+            android:maxLines="1"
+            android:text="@string/destination_label"
+            android:textColor="@color/foreground"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="40"
+            android:autoSizeMaxTextSize="72sp"
+            android:autoSizeMinTextSize="16sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center|top"
+            android:text="@string/destination_text"
+            android:textColor="@color/foreground"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</FrameLayout>

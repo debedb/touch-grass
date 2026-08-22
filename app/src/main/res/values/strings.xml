@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Installation-specific text. Edit here, rebuild, reinstall. -->
+<resources>
+    <string name="app_name">Touch Grass</string>
+
+    <string name="idle_title">TOUCH GRASS</string>
+    <string name="response_title">YOU TOUCHED GLASS.</string>
+    <string name="response_subtitle">THAT IS NOT GRASS.</string>
+    <string name="destination_label">REAL GRASS:</string>
+    <string name="destination_text">Replace with final directions</string>
+
+    <string name="grass_description">Photograph of the grass described by the directions</string>
+</resources>
