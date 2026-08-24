@@ -9,7 +9,7 @@
     <string name="destination_label">REAL GRASS:</string>
     <string name="destination_text">KINGS CREEK MEADOW\nLASSEN VOLCANIC NATIONAL PARK\n203 MILES BY ROAD\n40.4603, -121.4655</string>
 
-    <string name="turf_text">THAT IS NOT GRASS EITHER.</string>
+    <string name="turf_text">THAT IS NOT GRASS.</string>
     <string name="turf_arrow_description">Arrow pointing down at the astroturf sample</string>
 
     <string name="qr_caption">SCAN FOR DRIVING DIRECTIONS</string>
