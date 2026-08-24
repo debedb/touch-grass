@@ -91,9 +91,7 @@ No settings screen or remote content system is required.
 Preferred:
 
 - APK installable by ADB or direct sideloading.
-- Optional automatic launch after device boot. Satisfied by declaring
-  `category.HOME` and selecting the app as the device's Home app; this also makes
-  the Home button return to the installation rather than to a launcher.
+- Optional automatic launch after device boot.
 
 Acceptable fallback:
 

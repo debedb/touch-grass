@@ -12,17 +12,9 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <!-- HOME + DEFAULT make this a launcher candidate, so the Home
-                 button returns to the piece instead of escaping to the system
-                 launcher, and the system starts it after boot without needing
-                 RECEIVE_BOOT_COMPLETED. This is not lock-task kiosk: system bars
-                 and Recents are still reachable deliberately. Undo by choosing
-                 another Home app in Settings > Apps > Default apps. -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

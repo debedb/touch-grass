@@ -71,15 +71,8 @@ Launch it once from the launcher, or:
 Airplane mode on. Automatic updates and notifications off. The app declares no
 permissions and requests no network access.
 
-Make it the Home app so it starts after a power cycle and so the Home button
-returns to the piece instead of escaping to a launcher. `MainActivity` declares
-`category.HOME`, so this needs no `RECEIVE_BOOT_COMPLETED` permission and no
-boot receiver:
-
-    adb shell cmd package set-home-activity com.debedb.touchgrass/.MainActivity
-
-To undo, pick another Home app in Settings > Apps > Default apps > Home app, or
-point the same command at `com.android.launcher3/.Launcher3QuickStepGo`.
+The app is a normal launcher entry. If someone exits it, relaunch it from the
+home screen; that is the accepted fallback rather than locking the tablet down.
 
 ## Customizing the installation
 
@@ -130,8 +123,12 @@ Text auto-sizes to fit its box, so longer directions shrink rather than clip.
 
 ## Not built
 
-- **Kiosk / lock task mode.** Immersive mode hides the system bars and Home now
-  returns to the app, but a deliberate swipe still reveals the bars transiently
-  and Recents can still reach another app. Real lockdown needs device-owner
-  provisioning via `adb shell dpm set-device-owner`, which was judged not worth a
-  factory reset for this installation.
+- **Launch on boot.** The spec lists it as optional with manual launch as an
+  acceptable fallback, and manual relaunch is what this installation uses. Making
+  the app the Home app (`category.HOME`) would cover boot launch with no extra
+  permission, but it also swallows the Home button, which makes the tablet
+  awkward to administer on site. Rejected for that reason.
+- **Kiosk / lock task mode.** Immersive mode hides the system bars, but a
+  deliberate swipe still reveals them transiently and Home still works. Real
+  lockdown needs device-owner provisioning via `adb shell dpm set-device-owner`.
+  Visitors exiting the app is considered acceptable.
