@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Points off the bottom edge of the screen at the astroturf sample on the
+     table below the tablet. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@color/foreground"
+        android:pathData="M10,2 h4 v12 h5 l-7,8 l-7,-8 h5 z" />
+</vector>

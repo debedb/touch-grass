@@ -36,10 +36,35 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="78"
+            android:layout_weight="64"
             android:contentDescription="@string/grass_description"
             android:scaleType="centerCrop"
             android:src="@drawable/grass" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:autoSizeMaxTextSize="34sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center|bottom"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:text="@string/turf_text"
+            android:textColor="@color/foreground"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/turf_arrow_description"
+            android:paddingVertical="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_arrow_down" />
     </LinearLayout>
 
     <LinearLayout
