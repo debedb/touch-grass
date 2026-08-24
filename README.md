@@ -128,6 +128,14 @@ Text auto-sizes to fit its box, so longer directions shrink rather than clip.
   the app the Home app (`category.HOME`) would cover boot launch with no extra
   permission, but it also swallows the Home button, which makes the tablet
   awkward to administer on site. Rejected for that reason.
+- **Sensing a touch on the astroturf.** Considered a camera (rejected: dust on
+  the lens, darkness, power draw, consent, and spec.md forbids camera use) and a
+  USB pressure mat or foot pedal behind a HID keystroke. The mat needs USB host
+  mode, and this tablet does not declare `android.hardware.usb.host`; its
+  `musb-hdrc` controller is registered as a UDC, i.e. peripheral role. Bluetooth
+  HID was rejected separately for battery drain and reliability. The astroturf
+  instead carries a printed laminated card, and the idle screen points at it.
+  See issue #1.
 - **Kiosk / lock task mode.** Immersive mode hides the system bars, but a
   deliberate swipe still reveals them transiently and Home still works. Real
   lockdown needs device-owner provisioning via `adb shell dpm set-device-owner`.
