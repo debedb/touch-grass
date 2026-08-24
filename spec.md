@@ -22,6 +22,10 @@ Present a deliberately simple interactive trap:
   **TOUCH GRASS**
 
 - Remaining area: full-width photograph of the actual grass referenced by the directions.
+- Below the photograph, a line reading **THAT IS NOT GRASS.** with an arrow
+  pointing off the bottom edge at the physical astroturf sample on the table.
+  This is a warning, not a punchline: at idle the visitor has touched nothing
+  yet.
 - The entire screen is tappable.
 - No buttons, instructions, menus, animations, or OS chrome.
 
