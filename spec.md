@@ -1,7 +1,7 @@
 # Touch Grass — App Specification
 
 **Version:** 0.1  
-**Target device:** ATOZEE 7-inch Android tablet, approximately 1024×600, Android 12  
+**Target device:** COLORROOM K10C 10-inch Android tablet, 800×1280 at 213 dpi, Android 13 (SDK 33), armeabi-v7a  
 **Mode:** Offline, portrait, full-screen installation
 
 ## Purpose
@@ -34,10 +34,21 @@ Immediately after any tap, replace the idle screen with:
 >
 > **REAL GRASS:**  
 > `[configurable directions, distance, or coordinates]`
+>
+> `[route map image]`
+>
+> **SCAN FOR DRIVING DIRECTIONS**  
+> `[QR code encoding a driving-directions URL]`
 
-- Use very large, high-contrast text.
+- Use very large, high-contrast text. The headline pair is set smaller than the
+  idle title so the map and QR code fit without crowding.
+- The map and the QR code are pre-rendered images bundled in the APK. Neither is
+  generated or fetched at runtime; the app stays offline and permission-free.
+- Size the QR so it stays scannable on the target display. At 800px wide the
+  bundled code is 37 modules across, roughly 7px per module.
 - Ignore additional taps while this state is visible.
-- Return automatically to the idle state after **6 seconds**.
+- Return automatically to the idle state after **10 seconds** -- long enough to
+  read the directions and scan the QR code.
 
 ## Runtime Behavior
 
@@ -64,8 +75,12 @@ For version 0.1, configuration may be compile-time constants or a bundled local 
   "response_subtitle": "THAT IS NOT GRASS.",
   "destination_label": "REAL GRASS:",
   "destination_text": "Replace with final directions",
-  "reset_delay_ms": 6000,
-  "grass_image": "grass.jpg"
+  "qr_caption": "SCAN FOR DRIVING DIRECTIONS",
+  "directions_url": "https://www.google.com/maps/dir/...",
+  "reset_delay_ms": 10000,
+  "grass_image": "grass.jpg",
+  "route_map_image": "route_map.png",
+  "qr_image": "qr_directions.png"
 }
 ```
 
@@ -92,7 +107,6 @@ Do **not** add:
 - analytics or telemetry;
 - backend services;
 - internet content;
-- QR codes;
 - camera or microphone use;
 - touch counters;
 - sound effects;
@@ -106,11 +120,14 @@ The physical astroturf sample and museum-style label are separate parts of the i
 
 1. A fresh launch shows the idle screen without setup or prompts.
 2. A tap anywhere on the screen immediately shows the response screen.
-3. The response screen resets to idle after approximately 6 seconds.
+3. The response screen resets to idle after approximately 10 seconds.
 4. Additional taps do not extend or restart the timer.
 5. The app remains usable through at least 100 consecutive interaction cycles.
 6. The screen stays awake during operation.
 7. No status bar, navigation bar, notifications, or other Android UI is visible during normal use.
 8. The app works fully offline.
 9. After a forced restart or process kill, reopening the app returns to the idle state.
-10. All installation-specific text and the grass photograph can be replaced without redesigning the application.
+10. All installation-specific text, the grass photograph, the route map, and the
+    QR code can be replaced without redesigning the application.
+11. The QR code decodes to the intended directions URL when scanned from the
+    device screen.

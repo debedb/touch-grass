@@ -7,7 +7,16 @@
     <string name="response_title">YOU TOUCHED GLASS.</string>
     <string name="response_subtitle">THAT IS NOT GRASS.</string>
     <string name="destination_label">REAL GRASS:</string>
-    <string name="destination_text">Replace with final directions</string>
+    <string name="destination_text">KINGS CREEK MEADOW\nLASSEN VOLCANIC NATIONAL PARK\n203 MILES BY ROAD\n40.4603, -121.4655</string>
 
+    <string name="qr_caption">SCAN FOR DRIVING DIRECTIONS</string>
+
+    <!-- The URL encoded in drawable-nodpi/qr_directions.png. Regenerate that PNG
+         with the command in README.md if this changes; nothing reads it at
+         runtime, it is recorded here so the QR is reproducible. -->
+    <string name="directions_url" translatable="false">https://www.google.com/maps/dir/Black+Rock+City,+NV/Upper+Kings+Creek+Meadow,+CA</string>
+
+    <string name="map_description">Driving route from Black Rock City to Kings Creek Meadow</string>
+    <string name="qr_description">QR code linking to driving directions</string>
     <string name="grass_description">Photograph of the grass described by the directions</string>
 </resources>

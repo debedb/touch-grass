@@ -4,7 +4,7 @@ Offline single-screen Android installation. See [spec.md](spec.md).
 
 Idle screen says **TOUCH GRASS** over a photograph of grass. Any touch replaces it
 with **YOU TOUCHED GLASS. / THAT IS NOT GRASS.** and directions to the real patch.
-It returns to idle 6 seconds later.
+It returns to idle 10 seconds later.
 
 ## Build
 
@@ -52,9 +52,11 @@ appending your own values leaves duplicate keys -- strip the originals first.
 
     "$ANDROID_HOME/emulator/emulator" -avd touchgrass -no-snapshot -no-audio
 
-Use `600x1024` for the 7-inch tablet, `800x1280` for the 10-inch; both report
-160 dpi. Confirm with `adb shell wm size` after boot -- that reports what the
-emulator actually applied, not what the file asked for.
+Use `600x1024` for the 7-inch tablet, `800x1280` for the 10-inch. Density varies
+by device and is worth matching -- the K10C reports 213, not the 160 that
+`avdmanager` defaults to. Confirm with `adb shell wm size` and `adb shell wm
+density` after boot -- those report what the emulator actually applied, not what
+the file asked for.
 
 ## Install
 
@@ -79,12 +81,38 @@ Everything installation-specific is a resource. Edit, rebuild, reinstall.
 | Reset delay | `app/src/main/res/values/integers.xml` (`reset_delay_ms`) |
 | Colors | `app/src/main/res/values/colors.xml` |
 | Grass photograph | `app/src/main/res/drawable/grass.jpg` |
+| Route map | `app/src/main/res/drawable-nodpi/route_map.png` |
+| QR code | `app/src/main/res/drawable-nodpi/qr_directions.png` |
 
 `destination_text` ships as `Replace with final directions`. Set it before the
 installation goes up.
 
-The bundled `grass.jpg` is a generated placeholder texture, not a photograph of
-any real patch. Overwrite it with the real photo at the same path and filename.
+### Regenerating the QR code
+
+The QR is a bundled PNG, not generated at runtime -- the app has no network
+permission and no QR library. The URL it encodes is recorded in
+`strings.xml` as `directions_url` purely so the code is reproducible:
+
+    brew install qrencode
+    qrencode -o app/src/main/res/drawable-nodpi/qr_directions.png \
+        -s 16 -m 3 -l M "$URL"
+
+Keep the URL short. Module count drives scannability: an 80-character URL is 37
+modules across, while a full Google Maps share URL with its `data=` blob and
+`g_ep` session token runs 357 characters and 73 modules -- roughly half the
+pixels per module on the same screen. Verify after any change by decoding a real
+screenshot, not just the source PNG:
+
+    adb exec-out screencap -p > /tmp/shot.png
+    zbarimg --raw /tmp/shot.png
+
+`drawable-nodpi` matters for both images: in plain `drawable/` Android treats
+them as mdpi and upscales on the 213 dpi tablet, which blurs QR modules.
+
+`grass.jpg` is a photograph of the actual patch the directions point to -- Kings
+Creek Meadow, Lassen Volcanic National Park. It is CC BY-SA 4.0 and the credit
+in [CREDITS.md](CREDITS.md) must travel with it, including onto the physical
+label. Replacing it with a different photo means updating that file too.
 Shoot or crop it portrait, roughly 3:4; it is drawn `centerCrop` so the edges are
 trimmed to fill the width.
 

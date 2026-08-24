@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Text views are weighted rather than wrap_content so uniform autosizing has a
      bounded box to shrink into; this keeps the copy readable if it is replaced
-     with something longer. -->
+     with something longer.
+
+     Response weights sum to 100. The headline pair is deliberately smaller than
+     the idle title so the map and QR have room; the QR needs enough pixels per
+     module to stay scannable, so it gets a fixed share rather than whatever is
+     left over. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
@@ -42,17 +47,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="24dp"
+        android:padding="20dp"
         android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="22"
-            android:autoSizeMaxTextSize="90sp"
-            android:autoSizeMinTextSize="18sp"
+            android:layout_weight="10"
+            android:autoSizeMaxTextSize="46sp"
+            android:autoSizeMinTextSize="14sp"
             android:autoSizeTextType="uniform"
             android:gravity="center|bottom"
+            android:maxLines="1"
             android:text="@string/response_title"
             android:textColor="@color/foreground"
             android:textStyle="bold" />
@@ -60,11 +66,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="22"
-            android:autoSizeMaxTextSize="90sp"
-            android:autoSizeMinTextSize="18sp"
+            android:layout_weight="10"
+            android:autoSizeMaxTextSize="46sp"
+            android:autoSizeMinTextSize="14sp"
             android:autoSizeTextType="uniform"
             android:gravity="center|top"
+            android:maxLines="1"
             android:text="@string/response_subtitle"
             android:textColor="@color/foreground"
             android:textStyle="bold" />
@@ -72,12 +79,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="16"
-            android:autoSizeMaxTextSize="56sp"
-            android:autoSizeMinTextSize="16sp"
+            android:layout_weight="6"
+            android:autoSizeMaxTextSize="34sp"
+            android:autoSizeMinTextSize="12sp"
             android:autoSizeTextType="uniform"
             android:gravity="center|bottom"
             android:maxLines="1"
+            android:paddingTop="6dp"
             android:text="@string/destination_label"
             android:textColor="@color/foreground"
             android:textStyle="bold" />
@@ -85,14 +93,47 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="40"
-            android:autoSizeMaxTextSize="72sp"
-            android:autoSizeMinTextSize="16sp"
+            android:layout_weight="15"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeMinTextSize="12sp"
             android:autoSizeTextType="uniform"
             android:gravity="center|top"
             android:text="@string/destination_text"
             android:textColor="@color/foreground"
             android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="32"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/map_description"
+            android:paddingVertical="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/route_map" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center|bottom"
+            android:maxLines="1"
+            android:text="@string/qr_caption"
+            android:textColor="@color/foreground"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="22"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/qr_description"
+            android:paddingVertical="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/qr_directions" />
     </LinearLayout>
 
 </FrameLayout>
